@@ -7,7 +7,7 @@ RUN sed -i.bak -r 's/(archive|security).ubuntu.com/old-releases.ubuntu.com/g' /e
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       python-2.7 python-yaml python-paramiko python-jinja2 python-httplib2 \
+       python python-yaml python-paramiko python-jinja2 python-httplib2 \
        python-software-properties software-properties-common \
        rsyslog sudo \
     && rm -Rf /var/lib/apt/lists/* \
