@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:13.04
 MAINTAINER Karl Hepworth
 
 # Install dependencies.
