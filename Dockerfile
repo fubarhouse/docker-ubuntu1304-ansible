@@ -20,7 +20,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN git clone https://github.com/ansible/ansible.git --recursive ~/ansible \
     && cd ~/ansible \
     && make \
-    && make install
+    && make install \
     && which ansible
 
 COPY initctl_faker .
