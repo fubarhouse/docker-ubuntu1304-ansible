@@ -11,10 +11,12 @@ RUN apt-get update \
        python python-yaml python-paramiko python-jinja2 python-httplib2 \
        python-software-properties software-properties-common \
        rsyslog sudo build-essential gcc rsync openssh-server openssl \
+       python-dev libssl-dev libffi-dev \
     && rm -Rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 RUN pip install setuptools
+RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
