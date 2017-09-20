@@ -16,16 +16,11 @@ RUN apt-get update \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 RUN pip install setuptools
-RUN pip install pyopenssl==0.13.1 pyasn1 ndg-httpsclient
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
 # Install Ansible
-RUN git clone https://github.com/ansible/ansible.git --recursive ~/ansible \
-    && cd ~/ansible \
-    && make \
-    && make install \
-    && which ansible
+RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 ansible cryptography
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
@@ -33,3 +28,7 @@ RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin
 # Install Ansible inventory file
 RUN mkdir /etc/ansible
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+
+# Report some information
+RUN python --version
+RUN ansible --version
