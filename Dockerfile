@@ -21,7 +21,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 
 # Install Node from source
 RUN git clone https://github.com/nodejs/node.git
-RUN cd node && git checkout v0.4.x
+RUN cd node && git checkout v4.x
 RUN ./configure && make && make install
 
 # Install Ansible
