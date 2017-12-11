@@ -20,7 +20,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
 # Install Node
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL http://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install nodejs
 
 # Install Ansible
