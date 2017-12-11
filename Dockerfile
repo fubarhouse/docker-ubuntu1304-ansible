@@ -19,9 +19,10 @@ RUN pip install setuptools
 RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 #ADD etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
-# Install Node
-RUN curl -sL http://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get install nodejs
+# Install Node from source
+RUN git clone https://github.com/nodejs/node.git
+RUN cd node && git checkout v0.4.x
+RUN ./configure && make && make install
 
 # Install Ansible
 RUN pip install urllib3 pyOpenSSL ndg-httpsclient pyasn1 ansible cryptography
